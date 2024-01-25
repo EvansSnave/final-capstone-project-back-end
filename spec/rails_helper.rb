@@ -5,9 +5,10 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require_relative 'support/factory_bot'
-require_relative 'support/chrome'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'support/factory_bot'
+require 'support/chrome'
+require 'devise'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -55,7 +56,7 @@ RSpec.configure do |config|
   #     RSpec.describe UsersController, type: :controller do
   #       # ...
   #     end
-  #
+  config.include Devise::Test::ControllerHelpers, type: :controller
   # The different available types are documented in the features, such as in
   # https://rspec.info/features/6-0/rspec-rails
   config.infer_spec_type_from_file_location!
@@ -64,4 +65,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
