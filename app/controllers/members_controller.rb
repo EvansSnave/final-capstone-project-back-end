@@ -6,11 +6,11 @@ class MembersController < ApplicationController
     if user
       render json: {
         message: 'You are in',
-        user: user
+        user:
       }
     else
       render json: {
-        message: 'Authentication failed',
+        message: 'Authentication failed'
       }, status: :unauthorized
     end
   end

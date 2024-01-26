@@ -9,7 +9,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def respond_with(resource, _opts = {})
-    register_success && return if !resource.persisted?
+    register_success && return unless resource.persisted?
+
     register_failed
   end
 
