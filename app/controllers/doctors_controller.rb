@@ -26,9 +26,7 @@ class DoctorsController < ApplicationController
   end
 
   def destroy
-    @doctor.destroy
-    head :no_content
-    if !@doctor
+    if @doctor.destroy
       render json: { message: 'Doctor deleted' }, status: :ok
     else
       render json: { message: @doctor.errors.full_messages }, status: { code: 422 }
