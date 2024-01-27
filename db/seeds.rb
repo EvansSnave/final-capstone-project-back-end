@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+cities = [
+  { name: 'New York' },
+  { name: 'Texas' },
+  { name: 'California' },
+  { name: 'Ohio' },
+]
+
+City.create(cities)
