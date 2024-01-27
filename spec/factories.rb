@@ -1,4 +1,12 @@
 FactoryBot.define do
+  factory :detail do
+    
+  end
+
+  factory :doctor do
+    
+  end
+
   factory :city do
     
   end
