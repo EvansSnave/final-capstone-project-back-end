@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
+  has_many :reservations
 end
