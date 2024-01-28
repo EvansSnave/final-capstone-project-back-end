@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :doctors
+  resources :reservations
 end
