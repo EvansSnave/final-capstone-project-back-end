@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   respond_to :json
-  before_action :get_reservation, only: [:destroy, :show]
+  before_action :seta_reservation, only: %i[destroy show]
 
   def create
     @reservation = Reservation.new(reservation_params)
@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
   def destroy
     if @reservation.destroy
       render json: { message: 'Reservation deleted' },
-      status: :ok
+             status: :ok
     else
       render json: { message: "Something went wrong. #{@reservation.errors.full_messages}" }
     end
@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
 
   private
 
-  def get_reservation
+  def seta_reservation
     @reservation = Reservation.find(params[:id])
   end
 

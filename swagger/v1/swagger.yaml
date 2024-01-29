@@ -6,12 +6,16 @@ info:
 paths:
   "/doctors":
     get:
-      summary: list doctors
+      summary: List doctors
+      tags:
+      - Doctors
       responses:
         '200':
           description: successful
     post:
-      summary: create doctor
+      summary: Create a doctor
+      tags:
+      - Doctors
       parameters: []
       responses:
         '200':
@@ -63,12 +67,70 @@ paths:
       schema:
         type: string
     get:
-      summary: show doctor
+      summary: Show a doctor information
+      tags:
+      - Doctors
       responses:
         '200':
           description: successful
     delete:
-      summary: delete doctor
+      summary: Delete a doctor
+      tags:
+      - Doctors
+      responses:
+        '200':
+          description: successful
+  "/reservations":
+    get:
+      summary: List all reservations
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                doctor_id:
+                  type: integer
+                schedule_date:
+                  type: string
+                  format: datetime
+              required:
+              - user_id
+              - doctor_id
+  "/reservations/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Show a reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: Delete a reservation
+      tags:
+      - Reservations
       responses:
         '200':
           description: successful

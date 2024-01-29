@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :doctors
-  resources :reservations
+  resources :doctors, only: [:create, :index, :show, :destroy]
+  resources :reservations, only: [:create, :destroy, :show, :index]
 end

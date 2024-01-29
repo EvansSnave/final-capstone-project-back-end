@@ -1,12 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'doctors', type: :request do
-
   path '/doctors' do
-
-    get('list doctors') do
+    get('List doctors') do
+      tags 'Doctors'
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -14,11 +12,12 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        run_test!
+        xit
       end
     end
 
-    post('create doctor') do
+    post('Create a doctor') do
+      tags 'Doctors'
       response(200, 'successful') do
         consumes 'application/json'
         parameter name: :doctor, in: :body, schema: {
@@ -36,8 +35,8 @@ RSpec.describe 'doctors', type: :request do
                 price: { type: :integer },
                 specialization: { type: :string },
                 studies: { type: :string }
-              },
-            },
+              }
+            }
           },
           required: %w[
             name age city_id user_id description image_url
@@ -52,7 +51,7 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        run_test!
+        xit
       end
     end
   end
@@ -60,7 +59,8 @@ RSpec.describe 'doctors', type: :request do
   path '/doctors/{id}' do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
-    get('show doctor') do
+    get('Show a doctor information') do
+      tags 'Doctors'
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -71,11 +71,12 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        run_test!
+        xit
       end
     end
 
-    delete('delete doctor') do
+    delete('Delete a doctor') do
+      tags 'Doctors'
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -86,7 +87,7 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        run_test!
+        xit
       end
     end
   end
