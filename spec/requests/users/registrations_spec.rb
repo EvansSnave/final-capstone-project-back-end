@@ -10,10 +10,15 @@ RSpec.describe 'users/registrations', type: :request do
         parameter name: :user, in: :body, schema: {
           type: :object,
           properties: {
-            name: { type: :string },
-            email: { type: :string, format: :email},
-            password: { type: :string, format: :password },
-            password_confirmation: { type: :string, format: :password }
+            user: {
+              type: :object,
+              properties: {
+                name: { type: :string },
+                email: { type: :string, format: :email},
+                password: { type: :string, format: :password },
+                password_confirmation: { type: :string, format: :password }
+              }
+            }
           },
           required: %w[name email password]
         }
