@@ -112,6 +112,7 @@ paths:
               required:
               - user_id
               - doctor_id
+              - schedule_date
   "/reservations/{id}":
     parameters:
     - name: id
@@ -134,6 +135,36 @@ paths:
       responses:
         '200':
           description: successful
+  "/signup":
+    post:
+      summary: Create a new user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                password_confirmation:
+                  type: string
+                  format: password
+              required:
+              - name
+              - email
+              - password
 servers:
 - url: http://{defaultHost}
   variables:

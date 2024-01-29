@@ -12,7 +12,7 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
   end
@@ -71,7 +71,7 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
 
@@ -87,7 +87,7 @@ RSpec.describe 'doctors', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
   end

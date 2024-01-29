@@ -12,7 +12,7 @@ RSpec.describe 'reservations', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
 
@@ -27,7 +27,7 @@ RSpec.describe 'reservations', type: :request do
             doctor_id: { type: :integer },
             schedule_date: { type: :string, format: :datetime }
           },
-          required: %w[user_id doctor_id]
+          required: %w[user_id doctor_id schedule_date]
         }
 
         after do |example|
@@ -37,7 +37,7 @@ RSpec.describe 'reservations', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe 'reservations', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe 'reservations', type: :request do
             }
           }
         end
-        xit
+        run_test!
       end
     end
   end
