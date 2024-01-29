@@ -67,16 +67,6 @@ paths:
       responses:
         '200':
           description: successful
-    patch:
-      summary: update doctor
-      responses:
-        '200':
-          description: successful
-    put:
-      summary: update doctor
-      responses:
-        '200':
-          description: successful
     delete:
       summary: delete doctor
       responses:
