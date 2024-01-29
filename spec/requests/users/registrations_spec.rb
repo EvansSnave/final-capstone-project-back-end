@@ -2,7 +2,6 @@ require 'swagger_helper'
 
 RSpec.describe 'users/registrations', type: :request do
   path '/signup' do
-
     post('Create a new user') do
       tags 'Users'
       response(200, 'successful') do
@@ -14,7 +13,7 @@ RSpec.describe 'users/registrations', type: :request do
               type: :object,
               properties: {
                 name: { type: :string },
-                email: { type: :string, format: :email},
+                email: { type: :string, format: :email },
                 password: { type: :string, format: :password },
                 password_confirmation: { type: :string, format: :password }
               }
