@@ -1,0 +1,89 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/doctors":
+    get:
+      summary: list doctors
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create doctor
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                age:
+                  type: integer
+                city_id:
+                  type: integer
+                user_id:
+                  type: integer
+                description:
+                  type: string
+                image_url:
+                  type: string
+                detail_attributes:
+                  type: object
+                  properties:
+                    price:
+                      type: integer
+                    specialization:
+                      type: string
+                    studies:
+                      type: string
+              required:
+              - name
+              - age
+              - city_id
+              - user_id
+              - description
+              - image_url
+              - detail_attributes
+              - price
+              - specialization
+              - studies
+  "/doctors/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show doctor
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update doctor
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update doctor
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete doctor
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:4000/
