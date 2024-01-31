@@ -29,7 +29,8 @@ class ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = Reservation.all
+    user_id = params[:id]
+    @reservations = Reservation.where(user_id: user_id)
     render json: @reservations
   end
 
