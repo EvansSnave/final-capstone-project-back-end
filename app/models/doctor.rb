@@ -2,7 +2,7 @@ class Doctor < ApplicationRecord
   belongs_to :user
   belongs_to :city
   has_one :detail, dependent: :destroy
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
 
   validates :city_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
