@@ -58,6 +58,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_064852) do
     t.index ["doctor_id"], name: "index_details_on_doctor_id"
   end
 
+  create_table "devise_api_tokens", force: :cascade do |t|
+    t.string "resource_owner_type", null: false
+    t.bigint "resource_owner_id", null: false
+    t.string "access_token", null: false
+    t.string "refresh_token"
+    t.integer "expires_in", null: false
+    t.datetime "revoked_at"
+    t.string "previous_refresh_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["access_token"], name: "index_devise_api_tokens_on_access_token"
+    t.index ["previous_refresh_token"], name: "index_devise_api_tokens_on_previous_refresh_token"
+    t.index ["refresh_token"], name: "index_devise_api_tokens_on_refresh_token"
+    t.index ["resource_owner_type", "resource_owner_id"], name: "index_devise_api_tokens_on_resource_owner"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.bigint "city_id", null: false
     t.bigint "user_id", null: false
@@ -83,7 +99,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_064852) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
