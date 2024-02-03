@@ -25,18 +25,11 @@ jobs:
         ruby-version: 3.2.2
         bundler-cache: true
 
-    - name: Precompile assets
-      env:
-        RAILS_ENV: test
-        DATABASE_URL: postgres://postgres:postgres@localhost/test_database
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
         DATABASE_URL: postgres://postgres:postgres@localhost/test_database
+        SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       run: |
         bundle exec rails db:create db:schema:load
         bundle exec rspec
