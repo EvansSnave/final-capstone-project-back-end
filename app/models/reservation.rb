@@ -6,6 +6,7 @@ class Reservation < ApplicationRecord
   validate :schedule_date_in_future
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :doctor_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :city_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   private
 
