@@ -41,9 +41,9 @@ class DoctorsController < ApplicationController
     params.require(:doctor).permit(
       :name, :age, :city_id,
       :user_id, :description, :avatar,
-      # :image_url, detail_attributes: %i[
-      #   price specialization studies
-      # ]
+      :image_url, detail_attributes: %i[
+        price specialization studies
+      ]
     )
   end
 end
