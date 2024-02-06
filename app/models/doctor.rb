@@ -3,6 +3,7 @@ class Doctor < ApplicationRecord
   belongs_to :city
   has_one :detail, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_one_attached :avatar
 
   validates :city_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -12,4 +13,8 @@ class Doctor < ApplicationRecord
   validates :age, presence: true, numericality: { only_integer: true, greater_than: 17 }
 
   accepts_nested_attributes_for :detail
+
+  def avatar_url
+    Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached?
+  end
 end
