@@ -6,6 +6,8 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
+      @doctor.image_url = rails_blob_url(@doctor.avatar, only_path: true)
+      @doctor.save
       render json: DoctorSerializer.new(@doctor).serializable_hash[:data][:attributes], status: :created
     else
       render json: {
