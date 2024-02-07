@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'is not valid with an email longer than 255 characters' do
-    user.email = 'a' * 244 + '@example.com'
+    user.email = "#{'a' * 244}@example.com"
     expect(user).to_not be_valid
   end
 

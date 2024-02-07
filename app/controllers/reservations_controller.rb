@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
 
   def index
     user_id = params[:id]
-    @reservations = Reservation.where(user_id: user_id)
+    @reservations = Reservation.where(user_id:)
     render json: @reservations
   end
 
