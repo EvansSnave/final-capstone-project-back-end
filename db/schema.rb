@@ -93,7 +93,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_06_212642) do
     t.date "schedule_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "city_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
