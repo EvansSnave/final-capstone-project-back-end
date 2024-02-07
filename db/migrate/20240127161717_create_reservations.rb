@@ -7,7 +7,5 @@ class CreateReservations < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
-
-    add_index :reservations, [:user_id, :doctor_id, :schedule_date], unique: true, name: 'unique_reservation_index'
   end
 end
