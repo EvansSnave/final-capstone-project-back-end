@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
-  get 'current_user', to: 'current_user#index'
+  get 'current_user', to: 'users/current_user#index'
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
