@@ -1,33 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe 'CurrentUsers', type: :request do
-  user = {
-    user: {
-      name: 'kevin',
-      email: 'kevin@email.com',
-      password: 'password',
-      password_confirmation: 'password'
-    }
-  }
-
+RSpec.describe 'CurrentUser', type: :request do
   before do
-    post '/signup', params: user
+    @user = create(:user)
   end
 
-  describe 'POST /signup' do
-    it 'creates a new user' do
-      expect(response).to have_http_status(:success)
-      reponse_json = JSON.parse(response.body)
-      expect(reponse_json['data']['email']).to eq('kevin@email.com')
+  describe 'GET /current_user' do
+    context 'when user is signed in' do
+      before do
+        sign_in @user
+      end
+
+      it "returns http success and the current user's data" do
+        get '/current_user'
+        expect(response).to have_http_status(:success)
+
+        json = JSON.parse(response.body)
+
+        expect(json['id']).to eq(@user.id)
+      end
     end
-  end
 
-  describe 'POST /login' do
-    it 'logs in users' do
-      post '/login', params: user
-      expect(response).to have_http_status(:success)
-      reponse_json = JSON.parse(response.body)
-      expect(reponse_json['status']['message']).to eq('Logged in successfully')
+    context 'when user is not signed in' do
+      it 'returns http unauthorized' do
+        get '/current_user'
+        expect(response).to have_http_status(:unauthorized)
+      end
     end
   end
 end
