@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe City, type: :model do
-  subject { build(:city) }
+  let(:city) { build(:city) }
 
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
+  it 'is valid with valid attributes' do
+    expect(city).to be_valid
   end
 
-  describe 'associations' do
-    it { should have_many(:doctors) }
+  it 'is not valid without a name' do
+    city.name = nil
+    expect(city).to_not be_valid
+  end
+
+  it 'has many doctors' do
+    expect(City.reflect_on_association(:doctors).macro).to eq(:has_many)
   end
 end
