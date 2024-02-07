@@ -342,6 +342,9 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails
   rswag
+  rswag-api
+  rswag-specs
+  rswag-ui
   rubocop
   selenium-webdriver
   shoulda-matchers
