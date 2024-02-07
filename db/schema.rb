@@ -78,9 +78,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_06_212642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "city_id", null: false
-    t.index ["doctor_id"], name: "index_reservations_on_doctor_id"
-    t.index ["user_id", "doctor_id", "schedule_date"], name: "unique_reservation_index", unique: true
-    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
