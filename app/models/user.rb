@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 80 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 255 },
-                                    format: { with: VALID_EMAIL_REGEX }
+                    format: { with: VALID_EMAIL_REGEX }
   has_many :reservations
   has_many :doctors
 end
