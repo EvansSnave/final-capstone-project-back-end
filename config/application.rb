@@ -29,6 +29,6 @@ module FinalCapstoneProjectBackEnd
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
+    # config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
   end
 end
