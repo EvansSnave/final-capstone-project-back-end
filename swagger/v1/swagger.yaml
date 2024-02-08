@@ -13,17 +13,23 @@ paths:
       schema:
         type: string
     get:
+      tags:
+        - Details
       summary: show detail
       responses:
         '200':
           description: successful
   "/doctors":
     get:
+      tags:
+        - Doctors
       summary: list doctors
       responses:
         '200':
           description: successful
     post:
+      tags:
+        - Doctors
       summary: create doctor
       responses:
         '200':
@@ -37,22 +43,30 @@ paths:
       schema:
         type: string
     get:
+      tags:
+        - Doctors
       summary: show doctor
       responses:
         '200':
           description: successful
     delete:
+      tags:
+        - Doctors
       summary: delete doctor
       responses:
         '200':
           description: successful
   "/reservations":
     get:
+      tags:
+        - Reservations
       summary: list reservations
       responses:
         '200':
           description: successful
     post:
+      tags:
+        - Reservations
       summary: create reservation
       responses:
         '200':
@@ -66,79 +80,107 @@ paths:
       schema:
         type: string
     get:
+      tags:
+        - Reservations
       summary: show reservation
       responses:
         '200':
           description: successful
     delete:
+      tags:
+        - Reservations
       summary: delete reservation
       responses:
         '200':
           description: successful
   "/current_user":
     get:
+      tags:
+        - Current User
       summary: list current_users
       responses:
         '200':
           description: successful
   "/signup/cancel":
     get:
+      tags:
+        - Registration
       summary: cancel registration
       responses:
         '200':
           description: successful
   "/signup/sign_up":
     get:
+      tags:
+        - Registration
       summary: new registration
       responses:
         '200':
           description: successful
   "/signup/edit":
     get:
+      tags:
+        - Registration
       summary: edit registration
       responses:
         '200':
           description: successful
   "/signup":
     patch:
+      tags:
+        - Registration
       summary: update registration
       responses:
         '200':
           description: successful
     put:
+      tags:
+        - Registration
       summary: update registration
       responses:
         '200':
           description: successful
     delete:
+      tags:
+        - Registration
       summary: delete registration
       responses:
         '200':
           description: successful
     post:
+      tags:
+        - Registration
       summary: create registration
       responses:
         '200':
           description: successful
   "/login":
     get:
+      tags:
+        - Login
       summary: new session
       responses:
         '200':
           description: successful
     post:
+      tags:
+        - Login
       summary: create session
       responses:
         '200':
           description: successful
   "/logout":
     delete:
+      tags:
+        - Login
       summary: delete session
       responses:
         '200':
           description: successful
   "/users":
     get:
+      tags:
+        - Users
       summary: list users
       responses:
         '200':
