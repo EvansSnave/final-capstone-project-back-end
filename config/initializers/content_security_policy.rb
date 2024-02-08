@@ -21,5 +21,5 @@ Rails.application.configure do
   config.content_security_policy_nonce_directives = %w(script-src style-src)
 
   # Report violations without enforcing the policy.
-  # config.content_security_policy_report_only = true
+  config.content_security_policy_report_only = true
 end
