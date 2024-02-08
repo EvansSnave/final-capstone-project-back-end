@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   }
   resources :doctors, only: [:create, :index, :show, :destroy]
   resources :reservations, only: [:create, :destroy, :show, :index]
+  resources :details, only: [:show]
 end

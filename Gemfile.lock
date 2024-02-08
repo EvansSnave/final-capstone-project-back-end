@@ -122,6 +122,9 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    goldiloader (5.2.0)
+      activerecord (>= 6.1, < 7.2)
+      activesupport (>= 6.1, < 7.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -306,6 +309,7 @@ DEPENDENCIES
   devise-jwt
   factory_bot_rails
   faker
+  goldiloader
   jsonapi-serializer
   pg (~> 1.1)
   puma (>= 5.0)
