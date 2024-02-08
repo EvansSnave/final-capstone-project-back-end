@@ -6,9 +6,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-      render json: {
-        message: 'Doctor created successfully'
-      }, status: :ok
+      render json: DoctorSerializer.new(@doctor).serializable_hash[:data][:attributes], status: :created
     else
       render json: {
         message: @doctor.errors.full_messages
@@ -42,7 +40,7 @@ class DoctorsController < ApplicationController
   def doctor_params
     params.require(:doctor).permit(
       :name, :age, :city_id,
-      :user_id, :description,
+      :user_id, :description, :avatar,
       :image_url, detail_attributes: %i[
         price specialization studies
       ]

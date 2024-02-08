@@ -42,7 +42,7 @@
 
 Model diagram
 
-![](./src/SQL-draw.png)
+(./src/SQL-draw.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -198,7 +198,7 @@ rspec
 
 Documentation here(it will change with deployment) => [Link](http://localhost:4000/api-docs/index.html)
 
-![](./src/API-documentation.png)
+(./src/API-documentation.png)
 
 </div>
 
