@@ -35,67 +35,8 @@ users = [
   },
 ]
 
-doctors = [
-  {
-    name: "doctor3",
-    age: 28,
-    city_id: 2,
-    user_id: 2,
-    description: "asad121212wasg1",
-    image_url: "saqwqwqasa",
-    detail_attributes: {
-      price: 12,
-      specialization: "Surgery-1",
-      studies: "University of life-2"
-    }
-  },
-  {
-    name: "doctor4",
-    age: 45,
-    city_id: 4,
-    user_id: 1,
-    description: "asad1",
-    image_url: "saqwqwqasa",
-    detail_attributes: {
-      price: 120,
-      specialization: "Surgery-1",
-      studies: "University of life-2"
-    }
-  },
-  {
-    name: "doctor5",
-    age: 66,
-    city_id: 1,
-    user_id: 4,
-    description: "asad112wa21",
-    image_url: "saqwqwqasa",
-    detail_attributes: {
-      price: 12320,
-      specialization: "Surgery-1",
-      studies: "University of life-2"
-    }
-  },
-  {
-    name: "doctor6",
-    age: 23,
-    city_id: 3,
-    user_id: 3,
-    description: "asad12asadaf121",
-    image_url: "saqwqwqasa",
-    detail_attributes: {
-      price: 13454,
-      specialization: "Surgery-1",
-      studies: "University of life-2"
-    }
-  }
-]
-
 City.create(cities)
 
 users.each do |user_params|
   User.create(user_params)
-end
-
-doctors.each do |doctor_params|
-  Doctor.create(doctor_params)
 end
