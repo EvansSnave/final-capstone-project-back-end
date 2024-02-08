@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Users::UsersController < ApplicationController
   before_action :authenticate_user!
 
   respond_to :json
