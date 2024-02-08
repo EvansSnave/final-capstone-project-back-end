@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :doctor
 
-  validates_presence_of :user, :schedule_date, :city
+  validates_presence_of :user, :schedule_date
   validate :schedule_date_in_future
 
   private

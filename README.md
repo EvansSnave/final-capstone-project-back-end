@@ -40,7 +40,9 @@
 
 ## 🛠 ER Diagram <a name="built-with"></a>
 
-Coming soon...
+Model diagram
+
+![](./src/SQL-draw.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -194,11 +196,9 @@ rspec
 
 <div align="center">
 
-API documentation
-Coming soon ...
+Documentation here(it will change with deployment) => [Link](http://localhost:4000/api-docs/index.html)
 
-API methods
-Coming soon ...
+![](./src/API-documentation.png)
 
 </div>
 

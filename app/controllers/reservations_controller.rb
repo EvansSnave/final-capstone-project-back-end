@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   respond_to :json
-  before_action :set_reservation, only: %i[destroy show]
+  before_action :seta_reservation, only: %i[destroy show]
 
   def create
     @reservation = Reservation.new(reservation_params)
@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
 
   private
 
-  def set_reservation
+  def seta_reservation
     @reservation = Reservation.find(params[:id])
   end
 
