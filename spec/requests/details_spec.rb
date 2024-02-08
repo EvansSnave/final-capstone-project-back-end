@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Details", type: :request do
+RSpec.describe 'Details', type: :request do
   let(:user) { create(:user) }
   let(:city) { create(:city) }
-  let(:doctor) { create(:doctor, user: user, city: city) }
-  let(:detail) { create(:detail, doctor: doctor) }
+  let(:doctor) { create(:doctor, user:, city:) }
+  let(:detail) { create(:detail, doctor:) }
 
   describe 'GET /show' do
     before do

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "Doctors", type: :request do
+RSpec.describe 'Doctors', type: :request do
   let(:user) { create(:user) }
   let(:city) { create(:city) }
-  let(:doctor) { create(:doctor, user: user, city: city) }
+  let(:doctor) { create(:doctor, user:, city:) }
 
   describe 'GET /index' do
     before do
-      get "/doctors"
+      get '/doctors'
     end
 
     it 'returns http success' do
@@ -56,13 +56,13 @@ RSpec.describe "Doctors", type: :request do
       end
 
       it 'creates a new doctor' do
-        expect {
-          post "/doctors", params: valid_attributes
-        }.to change(Doctor, :count).by(1)
+        expect do
+          post '/doctors', params: valid_attributes
+        end.to change(Doctor, :count).by(1)
       end
 
       it 'returns http created' do
-        post "/doctors", params: valid_attributes
+        post '/doctors', params: valid_attributes
         expect(response).to have_http_status(:created)
       end
     end
@@ -88,13 +88,13 @@ RSpec.describe "Doctors", type: :request do
       end
 
       it 'does not create a new doctor' do
-        expect {
-          post "/doctors", params: invalid_attributes
-        }.not_to change(Doctor, :count)
+        expect do
+          post '/doctors', params: invalid_attributes
+        end.not_to change(Doctor, :count)
       end
 
       it 'returns http unprocessable entity' do
-        post "/doctors", params: invalid_attributes
+        post '/doctors', params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -103,9 +103,9 @@ RSpec.describe "Doctors", type: :request do
   describe 'DELETE /destroy' do
     it 'deletes the doctor' do
       doctor
-      expect {
+      expect do
         delete "/doctors/#{doctor.id}"
-      }.to change(Doctor, :count).by(-1)
+      end.to change(Doctor, :count).by(-1)
     end
 
     it 'returns http success' do

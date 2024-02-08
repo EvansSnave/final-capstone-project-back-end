@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "Reservations", type: :request do
+RSpec.describe 'Reservations', type: :request do
   let(:user) { create(:user) }
   let(:doctor) { create(:doctor) }
-  let(:reservation) { create(:reservation, user: user, doctor: doctor) }
+  let(:reservation) { create(:reservation, user:, doctor:) }
 
   describe 'GET /index' do
     before do
-      get "/reservations", params: { id: user.id }
+      get '/reservations', params: { id: user.id }
     end
 
     it 'returns http success' do
@@ -46,13 +46,13 @@ RSpec.describe "Reservations", type: :request do
       end
 
       it 'creates a new reservation' do
-        expect {
-          post "/reservations", params: valid_attributes
-        }.to change(Reservation, :count).by(1)
+        expect do
+          post '/reservations', params: valid_attributes
+        end.to change(Reservation, :count).by(1)
       end
 
       it 'returns http success' do
-        post "/reservations", params: valid_attributes
+        post '/reservations', params: valid_attributes
         expect(response).to have_http_status(:ok)
       end
     end
@@ -69,13 +69,13 @@ RSpec.describe "Reservations", type: :request do
       end
 
       it 'does not create a new reservation' do
-        expect {
-          post "/reservations", params: invalid_attributes
-        }.not_to change(Reservation, :count)
+        expect do
+          post '/reservations', params: invalid_attributes
+        end.not_to change(Reservation, :count)
       end
 
       it 'returns http unauthorized' do
-        post "/reservations", params: invalid_attributes
+        post '/reservations', params: invalid_attributes
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -84,9 +84,9 @@ RSpec.describe "Reservations", type: :request do
   describe 'DELETE /destroy' do
     it 'deletes the reservation' do
       reservation
-      expect {
+      expect do
         delete "/reservations/#{reservation.id}"
-      }.to change(Reservation, :count).by(-1)
+      end.to change(Reservation, :count).by(-1)
     end
 
     it 'returns http success' do
