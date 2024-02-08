@@ -54,5 +54,5 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
 
-gem 'rswag'
 gem 'goldiloader'
+gem 'rswag'
