@@ -1,80 +1,97 @@
-require 'swagger_helper'
+require 'rails_helper'
 
-RSpec.describe 'reservations', type: :request do
-  path '/reservations' do
-    get('List all reservations') do
-      tags 'Reservations'
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
+RSpec.describe ReservationsController, type: :controller do
+  let(:user) { create(:user) }
+  let(:doctor) { create(:doctor) }
+  let(:reservation) { create(:reservation, user: user, doctor: doctor) }
+
+  describe 'GET #index' do
+    before do
+      get :index, params: { id: user.id }, format: :json
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns all reservations for the user' do
+      expect(JSON.parse(response.body).size).to eq(Reservation.where(user_id: user.id).count)
+    end
+  end
+
+  describe 'GET #show' do
+    before do
+      get :show, params: { id: reservation.id }, format: :json
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns the correct reservation' do
+      expect(response.body).to eq(reservation.to_json)
+    end
+  end
+
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      let(:valid_attributes) do
+        {
+          reservation: {
+            user_id: user.id,
+            doctor_id: doctor.id,
+            schedule_date: Faker::Date.forward(days: 23)
           }
-        end
-        run_test!
+        }
+      end
+
+      it 'creates a new reservation' do
+        expect {
+          post :create, params: valid_attributes, format: :json
+        }.to change(Reservation, :count).by(1)
+      end
+
+      it 'returns http success' do
+        post :create, params: valid_attributes, format: :json
+        expect(response).to have_http_status(:ok)
       end
     end
 
-    post('Create a reservation') do
-      tags 'Reservations'
-      response(200, 'successful') do
-        consumes 'application/json'
-        parameter name: :reservation, in: :body, schema: {
-          type: :object,
-          properties: {
-            user_id: { type: :integer },
-            doctor_id: { type: :integer },
-            schedule_date: { type: :string, format: :datetime }
-          },
-          required: %w[user_id doctor_id schedule_date]
-        }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
+    context 'with invalid attributes' do
+      let(:invalid_attributes) do
+        {
+          reservation: {
+            user_id: '',
+            doctor_id: '',
+            schedule_date: ''
           }
-        end
-        run_test!
+        }
+      end
+
+      it 'does not create a new reservation' do
+        expect {
+          post :create, params: invalid_attributes, format: :json
+        }.not_to change(Reservation, :count)
+      end
+
+      it 'returns http unauthorized' do
+        post :create, params: invalid_attributes, format: :json
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
 
-  path '/reservations/{id}' do
-    parameter name: 'id', in: :path, type: :string, description: 'id'
-
-    get('Show a reservation') do
-      tags 'Reservations'
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
+  describe 'DELETE #destroy' do
+    it 'deletes the reservation' do
+      reservation
+      expect {
+        delete :destroy, params: { id: reservation.id }, format: :json
+      }.to change(Reservation, :count).by(-1)
     end
 
-    delete('Delete a reservation') do
-      tags 'Reservations'
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
+    it 'returns http success' do
+      delete :destroy, params: { id: reservation.id }, format: :json
+      expect(response).to have_http_status(:ok)
     end
   end
 end
