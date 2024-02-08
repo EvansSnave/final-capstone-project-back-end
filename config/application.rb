@@ -28,18 +28,5 @@ module FinalCapstoneProjectBackEnd
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
-    # Add this block to set up the Content Security Policy
-    config.content_security_policy do |policy|
-      policy.default_src :self, :https, 'http://localhost:4000'
-      policy.font_src    :self, :https, :data
-      policy.img_src     :self, :https, :data
-      policy.object_src  :none
-      policy.script_src  :self, :https, 'http://localhost:4000'
-      policy.style_src   :self, :https
-
-      # Specify URI for violation reports
-      policy.report_uri "/csp-violation-report-endpoint"
-    end
   end
 end
