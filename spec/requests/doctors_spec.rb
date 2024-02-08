@@ -1,14 +1,13 @@
 require 'rails_helper'
-require 'faker'
 
-RSpec.describe DoctorsController, type: :controller do
+RSpec.describe "Doctors", type: :request do
   let(:user) { create(:user) }
   let(:city) { create(:city) }
-  let(:doctor) { create(:doctor, user:, city:) }
+  let(:doctor) { create(:doctor, user: user, city: city) }
 
-  describe 'GET #index' do
+  describe 'GET /index' do
     before do
-      get :index, format: :json
+      get "/doctors"
     end
 
     it 'returns http success' do
@@ -20,9 +19,9 @@ RSpec.describe DoctorsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /show' do
     before do
-      get :show, params: { id: doctor.id }, format: :json
+      get "/doctors/#{doctor.id}"
     end
 
     it 'returns http success' do
@@ -34,7 +33,7 @@ RSpec.describe DoctorsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST /create' do
     context 'with valid attributes' do
       let(:valid_attributes) do
         {
@@ -57,13 +56,13 @@ RSpec.describe DoctorsController, type: :controller do
       end
 
       it 'creates a new doctor' do
-        expect do
-          post :create, params: valid_attributes, format: :json
-        end.to change(Doctor, :count).by(1)
+        expect {
+          post "/doctors", params: valid_attributes
+        }.to change(Doctor, :count).by(1)
       end
 
       it 'returns http created' do
-        post :create, params: valid_attributes, format: :json
+        post "/doctors", params: valid_attributes
         expect(response).to have_http_status(:created)
       end
     end
@@ -89,28 +88,28 @@ RSpec.describe DoctorsController, type: :controller do
       end
 
       it 'does not create a new doctor' do
-        expect do
-          post :create, params: invalid_attributes, format: :json
-        end.not_to change(Doctor, :count)
+        expect {
+          post "/doctors", params: invalid_attributes
+        }.not_to change(Doctor, :count)
       end
 
       it 'returns http unprocessable entity' do
-        post :create, params: invalid_attributes, format: :json
+        post "/doctors", params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /destroy' do
     it 'deletes the doctor' do
       doctor
-      expect do
-        delete :destroy, params: { id: doctor.id }, format: :json
-      end.to change(Doctor, :count).by(-1)
+      expect {
+        delete "/doctors/#{doctor.id}"
+      }.to change(Doctor, :count).by(-1)
     end
 
     it 'returns http success' do
-      delete :destroy, params: { id: doctor.id }, format: :json
+      delete "/doctors/#{doctor.id}"
       expect(response).to have_http_status(:ok)
     end
   end

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe ReservationsController, type: :controller do
+RSpec.describe "Reservations", type: :request do
   let(:user) { create(:user) }
   let(:doctor) { create(:doctor) }
   let(:reservation) { create(:reservation, user: user, doctor: doctor) }
 
-  describe 'GET #index' do
+  describe 'GET /index' do
     before do
-      get :index, params: { id: user.id }, format: :json
+      get "/reservations", params: { id: user.id }
     end
 
     it 'returns http success' do
@@ -19,9 +19,9 @@ RSpec.describe ReservationsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /show' do
     before do
-      get :show, params: { id: reservation.id }, format: :json
+      get "/reservations/#{reservation.id}"
     end
 
     it 'returns http success' do
@@ -33,7 +33,7 @@ RSpec.describe ReservationsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST /create' do
     context 'with valid attributes' do
       let(:valid_attributes) do
         {
@@ -47,12 +47,12 @@ RSpec.describe ReservationsController, type: :controller do
 
       it 'creates a new reservation' do
         expect {
-          post :create, params: valid_attributes, format: :json
+          post "/reservations", params: valid_attributes
         }.to change(Reservation, :count).by(1)
       end
 
       it 'returns http success' do
-        post :create, params: valid_attributes, format: :json
+        post "/reservations", params: valid_attributes
         expect(response).to have_http_status(:ok)
       end
     end
@@ -70,27 +70,27 @@ RSpec.describe ReservationsController, type: :controller do
 
       it 'does not create a new reservation' do
         expect {
-          post :create, params: invalid_attributes, format: :json
+          post "/reservations", params: invalid_attributes
         }.not_to change(Reservation, :count)
       end
 
       it 'returns http unauthorized' do
-        post :create, params: invalid_attributes, format: :json
+        post "/reservations", params: invalid_attributes
         expect(response).to have_http_status(:unauthorized)
       end
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /destroy' do
     it 'deletes the reservation' do
       reservation
       expect {
-        delete :destroy, params: { id: reservation.id }, format: :json
+        delete "/reservations/#{reservation.id}"
       }.to change(Reservation, :count).by(-1)
     end
 
     it 'returns http success' do
-      delete :destroy, params: { id: reservation.id }, format: :json
+      delete "/reservations/#{reservation.id}"
       expect(response).to have_http_status(:ok)
     end
   end
