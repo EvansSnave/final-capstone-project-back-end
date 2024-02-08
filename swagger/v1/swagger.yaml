@@ -6,20 +6,53 @@ info:
 paths:
   "/doctors":
     get:
-      summary: List doctors
-      tags:
-      - Doctors
+      summary: Retrieves all doctors
       responses:
         '200':
-          description: successful
+          description: doctors retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    age:
+                      type: integer
+                    description:
+                      type: string
+                    avatar:
+                      type: string
+                    image_url:
+                      type: string
+                    detail:
+                      type: object
+                      properties:
+                        price:
+                          type: integer
+                        specialization:
+                          type: string
+                        studies:
+                          type: string
+                  required:
+                  - id
+                  - name
+                  - age
+                  - description
+                  - avatar
+                  - image_url
+                  - detail
     post:
-      summary: Create a doctor
-      tags:
-      - Doctors
+      summary: Creates a doctor
       parameters: []
       responses:
-        '200':
-          description: successful
+        '201':
+          description: doctor created
+        '422':
+          description: invalid request
       requestBody:
         content:
           application/json:
@@ -30,11 +63,9 @@ paths:
                   type: string
                 age:
                   type: integer
-                city_id:
-                  type: integer
-                user_id:
-                  type: integer
                 description:
+                  type: string
+                avatar:
                   type: string
                 image_url:
                   type: string
@@ -50,124 +81,71 @@ paths:
               required:
               - name
               - age
-              - city_id
-              - user_id
               - description
+              - avatar
               - image_url
               - detail_attributes
-              - price
-              - specialization
-              - studies
   "/doctors/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
     get:
-      summary: Show a doctor information
-      tags:
-      - Doctors
+      summary: Retrieves a doctor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
-          description: successful
+          description: doctor found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  age:
+                    type: integer
+                  description:
+                    type: string
+                  avatar:
+                    type: string
+                  image_url:
+                    type: string
+                  detail:
+                    type: object
+                    properties:
+                      price:
+                        type: integer
+                      specialization:
+                        type: string
+                      studies:
+                        type: string
+                required:
+                - id
+                - name
+                - age
+                - description
+                - avatar
+                - image_url
+                - detail
+        '404':
+          description: doctor not found
     delete:
-      summary: Delete a doctor
-      tags:
-      - Doctors
+      summary: Deletes a doctor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200':
-          description: successful
-  "/reservations":
-    get:
-      summary: List all reservations
-      tags:
-      - Reservations
-      responses:
-        '200':
-          description: successful
-    post:
-      summary: Create a reservation
-      tags:
-      - Reservations
-      parameters: []
-      responses:
-        '200':
-          description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                doctor_id:
-                  type: integer
-                schedule_date:
-                  type: string
-                  format: datetime
-              required:
-              - user_id
-              - doctor_id
-              - schedule_date
-  "/reservations/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: Show a reservation
-      tags:
-      - Reservations
-      responses:
-        '200':
-          description: successful
-    delete:
-      summary: Delete a reservation
-      tags:
-      - Reservations
-      responses:
-        '200':
-          description: successful
-  "/signup":
-    post:
-      summary: Create a new user
-      tags:
-      - Users
-      parameters: []
-      responses:
-        '200':
-          description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    email:
-                      type: string
-                      format: email
-                    password:
-                      type: string
-                      format: password
-                    password_confirmation:
-                      type: string
-                      format: password
-              required:
-              - name
-              - email
-              - password
+        '204':
+          description: doctor deleted
+        '404':
+          description: doctor not found
 servers:
 - url: http://{defaultHost}
   variables:
