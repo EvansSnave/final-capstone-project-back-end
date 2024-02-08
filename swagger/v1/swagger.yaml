@@ -4,60 +4,30 @@ info:
   title: API V1
   version: v1
 paths:
+  "/details/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show detail
+      responses:
+        '200':
+          description: successful
   "/doctors":
     get:
-      summary: List doctors
-      tags:
-      - Doctors
+      summary: list doctors
       responses:
         '200':
           description: successful
     post:
-      summary: Create a doctor
-      tags:
-      - Doctors
-      parameters: []
+      summary: create doctor
       responses:
         '200':
           description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                age:
-                  type: integer
-                city_id:
-                  type: integer
-                user_id:
-                  type: integer
-                description:
-                  type: string
-                image_url:
-                  type: string
-                detail_attributes:
-                  type: object
-                  properties:
-                    price:
-                      type: integer
-                    specialization:
-                      type: string
-                    studies:
-                      type: string
-              required:
-              - name
-              - age
-              - city_id
-              - user_id
-              - description
-              - image_url
-              - detail_attributes
-              - price
-              - specialization
-              - studies
   "/doctors/{id}":
     parameters:
     - name: id
@@ -67,52 +37,26 @@ paths:
       schema:
         type: string
     get:
-      summary: Show a doctor information
-      tags:
-      - Doctors
+      summary: show doctor
       responses:
         '200':
           description: successful
     delete:
-      summary: Delete a doctor
-      tags:
-      - Doctors
+      summary: delete doctor
       responses:
         '200':
           description: successful
   "/reservations":
     get:
-      summary: List all reservations
-      tags:
-      - Reservations
+      summary: list reservations
       responses:
         '200':
           description: successful
     post:
-      summary: Create a reservation
-      tags:
-      - Reservations
-      parameters: []
+      summary: create reservation
       responses:
         '200':
           description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                doctor_id:
-                  type: integer
-                schedule_date:
-                  type: string
-                  format: datetime
-              required:
-              - user_id
-              - doctor_id
-              - schedule_date
   "/reservations/{id}":
     parameters:
     - name: id
@@ -122,52 +66,83 @@ paths:
       schema:
         type: string
     get:
-      summary: Show a reservation
-      tags:
-      - Reservations
+      summary: show reservation
       responses:
         '200':
           description: successful
     delete:
-      summary: Delete a reservation
-      tags:
-      - Reservations
+      summary: delete reservation
+      responses:
+        '200':
+          description: successful
+  "/current_user":
+    get:
+      summary: list current_users
+      responses:
+        '200':
+          description: successful
+  "/signup/cancel":
+    get:
+      summary: cancel registration
+      responses:
+        '200':
+          description: successful
+  "/signup/sign_up":
+    get:
+      summary: new registration
+      responses:
+        '200':
+          description: successful
+  "/signup/edit":
+    get:
+      summary: edit registration
       responses:
         '200':
           description: successful
   "/signup":
-    post:
-      summary: Create a new user
-      tags:
-      - Users
-      parameters: []
+    patch:
+      summary: update registration
       responses:
         '200':
           description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    email:
-                      type: string
-                      format: email
-                    password:
-                      type: string
-                      format: password
-                    password_confirmation:
-                      type: string
-                      format: password
-              required:
-              - name
-              - email
-              - password
+    put:
+      summary: update registration
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete registration
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create registration
+      responses:
+        '200':
+          description: successful
+  "/login":
+    get:
+      summary: new session
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create session
+      responses:
+        '200':
+          description: successful
+  "/logout":
+    delete:
+      summary: delete session
+      responses:
+        '200':
+          description: successful
+  "/users":
+    get:
+      summary: list users
+      responses:
+        '200':
+          description: successful
 servers:
 - url: http://{defaultHost}
   variables:

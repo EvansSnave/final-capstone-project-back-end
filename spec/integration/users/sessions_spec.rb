@@ -1,10 +1,10 @@
 require 'swagger_helper'
 
-RSpec.describe 'doctors', type: :request do
+RSpec.describe 'users/sessions', type: :request do
 
-  path '/doctors' do
+  path '/login' do
 
-    get('list doctors') do
+    get('new session') do
       response(200, 'successful') do
 
         after do |example|
@@ -18,7 +18,7 @@ RSpec.describe 'doctors', type: :request do
       end
     end
 
-    post('create doctor') do
+    post('create session') do
       response(200, 'successful') do
 
         after do |example|
@@ -33,28 +33,10 @@ RSpec.describe 'doctors', type: :request do
     end
   end
 
-  path '/doctors/{id}' do
-    # You'll want to customize the parameter types...
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  path '/logout' do
 
-    get('show doctor') do
+    delete('delete session') do
       response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-
-    delete('delete doctor') do
-      response(200, 'successful') do
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {

@@ -1,10 +1,10 @@
 require 'swagger_helper'
 
-RSpec.describe 'doctors', type: :request do
+RSpec.describe 'reservations', type: :request do
 
-  path '/doctors' do
+  path '/reservations' do
 
-    get('list doctors') do
+    get('list reservations') do
       response(200, 'successful') do
 
         after do |example|
@@ -18,7 +18,7 @@ RSpec.describe 'doctors', type: :request do
       end
     end
 
-    post('create doctor') do
+    post('create reservation') do
       response(200, 'successful') do
 
         after do |example|
@@ -33,11 +33,11 @@ RSpec.describe 'doctors', type: :request do
     end
   end
 
-  path '/doctors/{id}' do
+  path '/reservations/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
-    get('show doctor') do
+    get('show reservation') do
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -52,7 +52,7 @@ RSpec.describe 'doctors', type: :request do
       end
     end
 
-    delete('delete doctor') do
+    delete('delete reservation') do
       response(200, 'successful') do
         let(:id) { '123' }
 
