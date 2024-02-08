@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 80 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   has_many :reservations
+  has_many :doctors
 end

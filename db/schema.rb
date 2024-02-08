@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_27_161717) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_212423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,14 +20,37 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_161717) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "details", force: :cascade do |t|
+    t.integer "price"
+    t.string "specialization"
+    t.string "studies"
+    t.bigint "doctor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_details_on_doctor_id"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.bigint "city_id", null: false
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "description"
+    t.string "image_url"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_doctors_on_city_id"
+    t.index ["user_id"], name: "index_doctors_on_user_id"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "city_id", null: false
+    t.bigint "doctor_id", null: false
     t.date "schedule_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_reservations_on_city_id"
-    t.index ["user_id", "city_id", "schedule_date"], name: "unique_reservation_index", unique: true
+    t.index ["doctor_id"], name: "index_reservations_on_doctor_id"
+    t.index ["user_id", "doctor_id", "schedule_date"], name: "unique_reservation_index", unique: true
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -46,6 +69,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_161717) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "reservations", "cities"
+  add_foreign_key "details", "doctors"
+  add_foreign_key "doctors", "cities"
+  add_foreign_key "doctors", "users"
+  add_foreign_key "reservations", "doctors"
   add_foreign_key "reservations", "users"
 end
