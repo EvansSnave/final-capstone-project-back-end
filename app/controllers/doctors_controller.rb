@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
   respond_to :json
-  before_action :find_doctor, only: [:show, :destroy]
+  before_action :find_doctor, only: %i[show destroy]
 
   def create
     @doctor = Doctor.new(doctor_params)
@@ -41,10 +41,11 @@ class DoctorsController < ApplicationController
 
   def doctor_params
     params.require(:doctor).permit(
-      :name, :age, :city_id, 
-      :user_id, :description, 
-      :image_url, detail_attributes: [
-        :price, :specialization, :studies
-      ])
+      :name, :age, :city_id,
+      :user_id, :description,
+      :image_url, detail_attributes: %i[
+        price specialization studies
+      ]
+    )
   end
 end
