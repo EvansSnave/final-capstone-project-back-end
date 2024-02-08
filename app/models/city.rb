@@ -1,3 +1,3 @@
 class City < ApplicationRecord
-  has_many :reservations
+  has_many :doctors
 end
