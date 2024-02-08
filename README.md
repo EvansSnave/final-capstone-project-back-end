@@ -22,9 +22,6 @@
     - [Install](#install)
     - [Database Setup](#database-setup)
     - [Usage](#usage)
-  - [🔬 Running Tests ](#-running-tests-)
-    - [Test Suite](#test-suite)
-  - [💻 API Documentation ](#-api-documentation-)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -42,7 +39,7 @@
 
 Model diagram
 
-(./src/SQL-draw.png)
+![Alt text](./src/SQL-draw.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,44 +160,6 @@ rails s
 
 ```
 This should start your local server on http://localhost:3000/. Now, you can use the REST API client of your choice to interact with the API.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## 🔬 Running Tests <a name="running-tests"></a>
-
-To run tests, navigate to the directory where the project is located on your machine, open your terminal, and follow these steps:
-
-### Test Suite
-
-This project contains a suite of unit tests which you can run to ensure everything is functioning as expected. To run these tests, you need RSpec installed.
-
-To install RSpec if you haven't already, run:
-
-```sh
-gem install rspec
-
-```
-
-After you've installed RSpec, you can run the tests with:
-
-```sh
-
-rspec
-
-```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 💻 API Documentation <a name="getting-started"></a>
-
-<div align="center">
-
-Documentation here(it will change with deployment) => [Link](http://localhost:4000/api-docs/index.html)
-
-(./src/API-documentation.png)
-
-</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
