@@ -22,7 +22,7 @@
     - [Install](#install)
     - [Database Setup](#database-setup)
     - [Usage](#usage)
-  - [💻 Tests ](#-tests)
+  - [💻 Tests ](#tests-)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -164,9 +164,8 @@ This should start your local server on http://localhost:3000/. Now, you can use 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Tests
+## Tests <a name="tests"></a>
 
-🔬 Running Tests
 To run tests, navigate to the directory where the project is located on your machine, open your terminal, and follow these steps:
 
 Test Suite
@@ -177,8 +176,8 @@ To install RSpec if you haven't already, run:
 gem install rspec
 After you've installed RSpec, you can run the tests with:
 
-rspec spec/controllers
-rspec spec/models
+bundle exec rspec spec/controllers
+bundle exec rspec spec/models
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
