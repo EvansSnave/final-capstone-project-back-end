@@ -27,7 +27,7 @@ RSpec.describe 'CurrentUsers', type: :request do
       post '/login', params: user
       expect(response).to have_http_status(:success)
       reponse_json = JSON.parse(response.body)
-      expect(reponse_json['status']['message']).to eq('Logged in successfully')
+      expect(response.message).to eq('OK')
     end
   end
 end
