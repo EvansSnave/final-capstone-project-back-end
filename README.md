@@ -189,12 +189,6 @@ bundle exec rspec spec/models
 - Twitter: [Kroja13](https://twitter.com/Kroja13)
 - LinkedIn: [Kevin Cruz](https://www.linkedin.com/in/kevin-cruz-25159a201/)
 
-👤 **Fisayo Michael**
-
-- GitHub: [fmanimashaun](https://github.com/fmanimashaun)
-- Twitter: [@fmanimashaun](https://twitter.com/fmanimashaun)
-- LinkedIn: [fmanimashaun](https://www.linkedin.com/in/fmanimashaun/)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
